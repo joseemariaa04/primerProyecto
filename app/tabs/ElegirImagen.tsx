@@ -3,17 +3,17 @@ import { useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
-  const [image, setImage] = useState<string | null>(null);
+  const [imagen, setImagen] = useState<string | null>(null);
 
-  const pickImage = async () => {
+  const elegirImagen = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
+      mediaTypes: ["images"],
+      allowsEditing: false,
       quality: 1,
     });
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      setImagen(result.assets[0].uri);
     }
   };
 
@@ -31,12 +31,12 @@ export default function App() {
     if (!tienePermiso) return;
 
     const resultado = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      quality: 0.7,
+      mediaTypes: ["images"],
+      quality: 1,
     });
 
     if (!resultado.canceled) {
-      setImage(resultado.assets[0].uri);
+      setImagen(resultado.assets[0].uri);
     }
   };
 
@@ -45,14 +45,14 @@ export default function App() {
       <Text style={styles.title}>Sube tu foto</Text>
 
       <View style={styles.imageContainer}>
-        {image ? (
-          <Image source={{ uri: image }} style={styles.image} />
+        {imagen ? (
+          <Image source={{ uri: imagen }} style={styles.image} />
         ) : (
           <Text style={styles.placeholder}>No hay imagen</Text>
         )}
       </View>
 
-      <Pressable style={styles.button} onPress={pickImage}>
+      <Pressable style={styles.button} onPress={elegirImagen}>
         <Text style={styles.buttonText}>Seleccionar foto</Text>
       </Pressable>
       <Pressable style={styles.button} onPress={hacerFoto}>
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   imageContainer: {
-    width: 220,
-    height: 220,
+    width: 300,
+    height: 300,
     borderRadius: 20,
     backgroundColor: "#1e293b",
     justifyContent: "center",
