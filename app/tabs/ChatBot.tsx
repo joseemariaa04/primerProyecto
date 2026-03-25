@@ -43,7 +43,7 @@ export default function ChatBot() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "stepfun/step-3.5-flash:free",
+          model: "minimax/minimax-m2.5:free",
           messages: nuevosMensajes,
         }),
       });
