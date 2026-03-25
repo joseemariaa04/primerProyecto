@@ -44,6 +44,7 @@ export default function HomeScreen() {
         value={city}
         onChangeText={setCity}
         style={styles.input}
+        placeholderTextColor={"white"}
       />
 
       <Button title="Buscar" onPress={handleSearch} />
