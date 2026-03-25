@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
 } from "react-native";
 
 export default function ListaTareas() {
@@ -21,6 +21,10 @@ export default function ListaTareas() {
     if (texto.trim() === "") return;
 
     setTareas([...tareas, { id: Date.now().toString(), texto: texto }]); //Uso la fecha como id porque me da un número único cada milisegundo
+  };
+
+  const eliminar = (id: string) => {
+    setTareas(tareas.filter((t) => t.id !== id));
   };
 
   return (
@@ -43,7 +47,9 @@ export default function ListaTareas() {
         data={tareas}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <Text style={styles.tarea}>• {item.texto}</Text>
+          <Pressable onPress={() => eliminar(item.id)}>
+            <Text style={styles.tarea}>• {item.texto}</Text>
+          </Pressable>
         )}
       />
     </View>

@@ -19,6 +19,11 @@ export default function Home() {
           </Pressable>
         </Link>
       </View>
+      <Link href="/ChatBot" asChild>
+        <Pressable style={styles.boton}>
+          <Text style={styles.textoBoton}>🤖 ChatBot</Text>
+        </Pressable>
+      </Link>
     </View>
   );
 }
@@ -46,6 +51,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 12,
+    margin: 3,
   },
   textoBoton: {
     color: "white",
