@@ -7,13 +7,36 @@ export default function App() {
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ["images"],
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       quality: 1,
     });
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
+    }
+  };
+
+  const pedirPermisos = async () => {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== "granted") {
+      alert("Necesitamos permisos para usar la cámara");
+      return false;
+    }
+    return true;
+  };
+
+  const hacerFoto = async () => {
+    const tienePermiso = await pedirPermisos();
+    if (!tienePermiso) return;
+
+    const resultado = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 0.7,
+    });
+
+    if (!resultado.canceled) {
+      setImage(resultado.assets[0].uri);
     }
   };
 
@@ -31,6 +54,9 @@ export default function App() {
 
       <Pressable style={styles.button} onPress={pickImage}>
         <Text style={styles.buttonText}>Seleccionar foto</Text>
+      </Pressable>
+      <Pressable style={styles.button} onPress={hacerFoto}>
+        <Text style={styles.buttonText}>Hacer foto</Text>
       </Pressable>
     </View>
   );
@@ -72,6 +98,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 25,
     borderRadius: 12,
+    margin: 5,
   },
   buttonText: {
     color: "#fff",
