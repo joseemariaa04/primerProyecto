@@ -9,6 +9,7 @@ import {
     View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 export default function ChatBot() {
   const [input, setInput] = useState("");
   const [cargando, setCargando] = useState(false);
@@ -106,7 +107,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     marginBottom: 20,
-    paddingTop: 20,
     alignSelf: "center",
   },
   container: {

@@ -19,11 +19,18 @@ export default function Home() {
           </Pressable>
         </Link>
       </View>
-      <Link href="/ChatBot" asChild>
-        <Pressable style={styles.boton}>
-          <Text style={styles.textoBoton}>🤖 ChatBot</Text>
-        </Pressable>
-      </Link>
+      <View style={styles.botonContainer}>
+        <Link href="/ChatBot" asChild>
+          <Pressable style={styles.boton}>
+            <Text style={styles.textoBoton}>🤖 ChatBot</Text>
+          </Pressable>
+        </Link>
+        <Link href="/ElegirImagen" asChild>
+          <Pressable style={styles.boton}>
+            <Text style={styles.textoBoton}>🖼️ Elegir Imagen</Text>
+          </Pressable>
+        </Link>
+      </View>
     </View>
   );
 }
