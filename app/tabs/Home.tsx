@@ -7,20 +7,14 @@ export default function Home() {
 
       <Text style={styles.title}>Bienvenido</Text>
 
-      <Text style={styles.subtitle}>
-        Navega por la app usando la barra inferior:
-      </Text>
+      <Text style={styles.subtitle}>Navega por la app usando la barra inferior:</Text>
 
       <View style={styles.lista}>
-        <Text style={styles.item}>
-          Tareas: Crea y elimina tareas fácilmente
-        </Text>
+        <Text style={styles.item}>Tareas: Crea y elimina tareas fácilmente</Text>
         <Text style={styles.item}>Chat: Chatbot con API de IA</Text>
         <Text style={styles.item}>Fotos: Sube o haz fotos con tu cámara</Text>
         <Text style={styles.item}>Pelis: Explora películas desde una API</Text>
-        <Text style={styles.item}>
-          Tiempo: muestra el tiempo de una ciudad consumiendo una API gratuita
-        </Text>
+        <Text style={styles.item}>Tiempo: muestra el tiempo de una ciudad consumiendo una API gratuita</Text>
       </View>
     </View>
   );
@@ -30,12 +24,14 @@ const styles = StyleSheet.create({
   lista: {
     marginTop: 20,
     gap: 10,
+    alignItems: "center",
   },
-
   item: {
     color: "#cbd5f5",
     fontSize: 15,
-    lineHeight: 22,
+    lineHeight: 20,
+    textAlign: "center",
+    maxWidth: 300,
   },
   container: {
     flex: 1,
