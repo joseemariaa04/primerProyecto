@@ -70,6 +70,15 @@ export default function Layout() {
             ),
           }}
         />
+        <Tabs.Screen
+          name="TiempoActual"
+          options={{
+            title: "Tiempo",
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="cloudy-night-outline" size={22} color={color} />
+            ),
+          }}
+        />
       </Tabs>
     </SafeAreaView>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
-import getPeliculas from "../../services/API";
+import getPeliculas from "../../services/movies_api";
 
 type Pelicula = {
   id: number | string;

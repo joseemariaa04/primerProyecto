@@ -18,6 +18,9 @@ export default function Home() {
         <Text style={styles.item}>Chat: Chatbot con API de IA</Text>
         <Text style={styles.item}>Fotos: Sube o haz fotos con tu cámara</Text>
         <Text style={styles.item}>Pelis: Explora películas desde una API</Text>
+        <Text style={styles.item}>
+          Tiempo: muestra el tiempo de una ciudad consumiendo una API gratuita
+        </Text>
       </View>
     </View>
   );
