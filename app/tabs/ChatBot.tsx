@@ -1,14 +1,16 @@
 import { useState } from "react";
 import {
-    FlatList,
-    KeyboardAvoidingView,
-    Pressable,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  FlatList,
+  KeyboardAvoidingView,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const API_KEY = process.env.EXPO_PUBLIC_OPENROUTER_API_KEY;
 
 export default function ChatBot() {
   const [input, setInput] = useState("");
@@ -21,33 +23,33 @@ export default function ChatBot() {
   ]);
 
   const enviarMensaje = async () => {
-    setCargando(true);
     if (!input.trim()) return;
+    setCargando(true);
 
     const nuevoMensaje = {
       role: "user",
       content: input,
     };
+    const nuevosMensajes = [...mensajes, nuevoMensaje];
 
-    setMensajes((prev) => [...prev, nuevoMensaje]);
+    setMensajes(nuevosMensajes);
     setInput("");
 
     try {
       const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
-          Authorization:
-            "Bearer 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",
+          Authorization: `Bearer ${API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "openai/gpt-3.5-turbo",
-          messages: [...mensajes, nuevoMensaje],
+          model: "stepfun/step-3.5-flash:free",
+          messages: nuevosMensajes,
         }),
       });
 
       const data = await res.json();
-
+      console.log("DATA:", data);
       const respuesta = data.choices[0].message;
 
       setMensajes((prev) => [...prev, respuesta]);

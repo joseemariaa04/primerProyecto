@@ -15,7 +15,7 @@ export default function Home() {
         <Text style={styles.item}>
           Tareas: Crea y elimina tareas fácilmente
         </Text>
-        <Text style={styles.item}>Chat: Chatbot con IA (ChatGPT)</Text>
+        <Text style={styles.item}>Chat: Chatbot con API de IA</Text>
         <Text style={styles.item}>Fotos: Sube o haz fotos con tu cámara</Text>
         <Text style={styles.item}>Pelis: Explora películas desde una API</Text>
       </View>
