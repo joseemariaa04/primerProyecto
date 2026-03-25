@@ -49,6 +49,7 @@ export default function ChatBot() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.titulo}>🤖 ChatBot</Text>
       <FlatList
         data={mensajes}
         keyExtractor={(_, id) => id.toString()}
@@ -77,6 +78,14 @@ export default function ChatBot() {
 }
 
 const styles = StyleSheet.create({
+  titulo: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "white",
+    marginBottom: 20,
+    paddingTop: 20,
+    alignSelf: "center",
+  },
   container: {
     flex: 1,
     padding: 10,
