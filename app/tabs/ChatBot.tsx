@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const API_KEY = process.env.EXPO_PUBLIC_OPENROUTER_API_KEY;
+const API_KEY = process.env.EXPO_PUBLIC_OPENROUTER_API_KEY; //Aquí va la API_KEY
 
 export default function ChatBot() {
   const [input, setInput] = useState("");
@@ -18,7 +18,7 @@ export default function ChatBot() {
   const [mensajes, setMensajes] = useState<any[]>([
     {
       role: "assistant",
-      content: "¡Hola! ¿Como puedo ayudarte hoy?",
+      content: "¡Hola! ¿Como puedo ayudarte hoy?", //Primer mensaje de bienvenida que no gasta tokens
     },
   ]);
 
@@ -37,22 +37,23 @@ export default function ChatBot() {
 
     try {
       const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        //Llamada al proveedor de la API
         method: "POST",
         headers: {
           Authorization: `Bearer ${API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "minimax/minimax-m2.5:free",
+          model: "minimax/minimax-m2.5:free", //Modelo de IA (este es gratuito)
           messages: nuevosMensajes,
         }),
       });
 
       const data = await res.json();
-      console.log("DATA:", data);
-      const respuesta = data.choices[0].message;
+      console.log("DATA:", data); //Debug
+      const respuesta = data.choices[0].message; //Respuesta de la API
 
-      setMensajes((prev) => [...prev, respuesta]);
+      setMensajes((prev) => [...prev, respuesta]); //Actualizamos
     } catch (error) {
       console.log(error);
     } finally {
