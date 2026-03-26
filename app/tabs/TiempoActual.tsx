@@ -1,29 +1,29 @@
 import { useState } from "react";
 import {
-    ActivityIndicator,
-    Button,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  ActivityIndicator,
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 import { getClima, getCoordenadas } from "../../services/api_tiempo";
 
 export default function HomeScreen() {
-  const [city, setCity] = useState("");
-  const [weather, setWeather] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+  const [ciudad, setCiudad] = useState("");
+  const [tiempo, setTiempo] = useState<any>(null);
+  const [cargando, setCargando] = useState(false);
 
-  const handleSearch = async () => {
-    if (!city) return;
+  const buscar = async () => {
+    if (!ciudad) return;
 
     try {
-      setLoading(true);
+      setCargando(true);
 
-      const coords = await getCoordenadas(city);
+      const coords = await getCoordenadas(ciudad);
       const data = await getClima(coords.latitude, coords.longitude);
 
-      setWeather({
+      setTiempo({
         city: coords.name,
         temp: data.current_weather.temperature,
         wind: data.current_weather.windspeed,
@@ -31,7 +31,7 @@ export default function HomeScreen() {
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false);
+      setCargando(false);
     }
   };
 
@@ -41,21 +41,21 @@ export default function HomeScreen() {
 
       <TextInput
         placeholder="Introduce ciudad"
-        value={city}
-        onChangeText={setCity}
+        value={ciudad}
+        onChangeText={setCiudad}
         style={styles.input}
         placeholderTextColor={"white"}
       />
 
-      <Button title="Buscar" onPress={handleSearch} />
+      <Button title="Buscar" onPress={buscar} />
 
-      {loading && <ActivityIndicator size="large" />}
+      {cargando && <ActivityIndicator size="large" />}
 
-      {weather && (
+      {tiempo && (
         <View style={styles.card}>
-          <Text style={styles.city}>{weather.city}</Text>
-          <Text style={styles.temp}>{weather.temp}°C</Text>
-          <Text>Viento: {weather.wind} km/h</Text>
+          <Text style={styles.city}>{tiempo.city}</Text>
+          <Text style={styles.temp}>{tiempo.temp}°C</Text>
+          <Text>Viento: {tiempo.wind} km/h</Text>
         </View>
       )}
     </View>
