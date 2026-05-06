@@ -44,7 +44,7 @@ export default function ChatBot() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "minimax/minimax-m2.5:free", //Modelo de IA (este es gratuito)
+          model: "openrouter/elephant-alpha", //Modelo de IA (este es gratuito)
           messages: nuevosMensajes,
         }),
       });
